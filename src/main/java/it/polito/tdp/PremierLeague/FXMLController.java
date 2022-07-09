@@ -6,8 +6,14 @@ package it.polito.tdp.PremierLeague;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.TreeMap;
+
+import it.polito.tdp.PremierLeague.model.Coppie;
+import it.polito.tdp.PremierLeague.model.Mese;
 import it.polito.tdp.PremierLeague.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +25,7 @@ import javafx.scene.control.TextField;
 public class FXMLController {
 
 	Model model;
+	List <Mese> mesi = new LinkedList<Mese>();
 	
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -39,7 +46,7 @@ public class FXMLController {
     private TextField txtMinuti; // Value injected by FXMLLoader
 
     @FXML // fx:id="cmbMese"
-    private ComboBox<?> cmbMese; // Value injected by FXMLLoader
+    private ComboBox<Mese> cmbMese; // Value injected by FXMLLoader
 
     @FXML // fx:id="cmbM1"
     private ComboBox<?> cmbM1; // Value injected by FXMLLoader
@@ -52,11 +59,22 @@ public class FXMLController {
 
     @FXML
     void doConnessioneMassima(ActionEvent event) {
+    	String output="";
+    	for(Coppie c : model.getConnessioneMax())
+    		output += c.getM1() + " " + c.getM2() + "\n";
+    	
+    	txtResult.appendText("Matches con connesisone massima: \n" +output);
+    	
     	
     }
 
     @FXML
     void doCreaGrafo(ActionEvent event) {
+    	
+    	txtResult.clear();
+    	
+    	
+    	txtResult.setText(model.creaGrafo(cmbMese.getValue().getN(), Integer.parseInt(txtMinuti.getText())));
     	
     }
 
@@ -79,6 +97,23 @@ public class FXMLController {
     
     public void setModel(Model model) {
     	this.model = model;
+    	
+    	mesi.add(new Mese(1, "Gennaio"));
+    	mesi.add(new Mese(2, "Febbario"));
+    	mesi.add(new Mese(3, "Marzo"));
+    	mesi.add(new Mese(4, "Aprile"));
+    	mesi.add(new Mese(5, "Maggio"));
+    	mesi.add(new Mese(6, "Giugno"));
+    	mesi.add(new Mese(7, "Luglio"));
+    	mesi.add(new Mese(8, "Agosto"));
+    	mesi.add(new Mese(9, "Settembre"));
+    	mesi.add(new Mese(10, "Ottobre"));
+    	mesi.add(new Mese(11, "Novembre"));
+    	mesi.add(new Mese(12, "Dicembre"));
+
+    	
+    	
+    	cmbMese.getItems().addAll(mesi);
   
     }
     
