@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 import java.util.TreeMap;
 
 import it.polito.tdp.PremierLeague.model.Coppie;
+import it.polito.tdp.PremierLeague.model.Match;
 import it.polito.tdp.PremierLeague.model.Mese;
 import it.polito.tdp.PremierLeague.model.Model;
 import javafx.event.ActionEvent;
@@ -49,10 +50,10 @@ public class FXMLController {
     private ComboBox<Mese> cmbMese; // Value injected by FXMLLoader
 
     @FXML // fx:id="cmbM1"
-    private ComboBox<?> cmbM1; // Value injected by FXMLLoader
+    private ComboBox<Match> cmbM1; // Value injected by FXMLLoader
 
     @FXML // fx:id="cmbM2"
-    private ComboBox<?> cmbM2; // Value injected by FXMLLoader
+    private ComboBox<Match> cmbM2; // Value injected by FXMLLoader
 
     @FXML // fx:id="txtResult"
     private TextArea txtResult; // Value injected by FXMLLoader
@@ -75,6 +76,9 @@ public class FXMLController {
     	
     	
     	txtResult.setText(model.creaGrafo(cmbMese.getValue().getN(), Integer.parseInt(txtMinuti.getText())));
+    	
+    	cmbM1.getItems().addAll(model.getPartiteGrafo());
+    	cmbM2.getItems().addAll(model.getPartiteGrafo());
     	
     }
 

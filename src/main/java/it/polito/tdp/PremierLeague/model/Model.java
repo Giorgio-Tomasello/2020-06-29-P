@@ -68,5 +68,11 @@ public class Model {
 		
 	}
 
+	public List<Match> getPartiteGrafo() {
+		return partiteGrafo;
+	}
+	
+	
+
 	
 }
